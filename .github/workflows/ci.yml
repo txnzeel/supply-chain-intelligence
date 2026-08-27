@@ -1,0 +1,60 @@
+name: Supply Chain Platform CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: Code and pipeline quality
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Compile Python sources
+        run: python -m compileall -q python dashboard tests
+
+      - name: Run regression tests
+        run: python -m pytest -q
+
+      - name: Validate orchestration graph
+        env:
+          PYTHONUTF8: "1"
+          PYTHONIOENCODING: utf-8
+        run: python python/data_engineering/run_pipeline.py --dry-run
+
+  container:
+    name: Container build
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    needs: quality
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build application image
+        run: docker build --tag supply-chain-intelligence:ci .
+
+      - name: Inspect image entry point
+        run: docker image inspect supply-chain-intelligence:ci --format '{{json .Config.Cmd}}'

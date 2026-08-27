@@ -1,0 +1,16 @@
+services:
+  control-tower:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: supply-chain-intelligence:latest
+    container_name: supply-chain-control-tower
+    ports:
+      - "8501:8501"
+    environment:
+      PYTHONUTF8: "1"
+      PYTHONIOENCODING: "utf-8"
+    restart: unless-stopped
+    volumes:
+      - ./data/processed:/app/data/processed:ro
+      - ./models/registry:/app/models/registry:ro

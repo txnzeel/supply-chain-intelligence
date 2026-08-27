@@ -1,0 +1,14 @@
+{
+  "simulated_at_utc": "2026-08-27T18:24:23.009201+00:00",
+  "products": 2000,
+  "simulations_per_product": 5000,
+  "total_scenarios": 10000000,
+  "policy_robustness": {
+    "Fragile": 1604,
+    "Watch": 155,
+    "Robust": 152,
+    "Acceptable": 89
+  },
+  "mean_stockout_probability": 0.23411400000000004,
+  "products_above_5pct_stockout_risk": 1759
+}

@@ -1,0 +1,10 @@
+metric,value
+Products monitored,2000
+Products with anomalies,95
+Critical anomalies,40
+High anomalies,12
+Moderate anomalies,43
+Demand spikes,1433
+Demand drops,560
+Products with forecast increases,1572
+Products with forecast decreases,355

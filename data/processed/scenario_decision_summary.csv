@@ -1,0 +1,5 @@
+scenario,products,critical_exposures,high_exposures,moderate_exposures,total_lost_sales_exposure,total_incremental_cost,avg_fill_rate_change,avg_exposure_score,avg_final_decision_score,total_additional_safety_stock,hidden_vulnerabilities
+Combined Stress,2000,3,144,1853,283123.0,2566662.34,-0.031,0.3447,0.2819,73738.0,123
+Supplier Disruption,2000,0,0,2000,77041.0,1899509.01,-0.021,0.2405,0.2112,59787.0,0
+Demand Surge,2000,0,0,278,190677.0,844226.16,-0.01,0.1545,0.1597,25921.0,0
+Optimized Policy,2000,0,0,5,0.0,0.0,0.0,0.0505,0.0659,482.0,0

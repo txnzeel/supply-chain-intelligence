@@ -1,0 +1,12 @@
+{
+  "monitored_at_utc": "2026-08-27T18:24:04.442842+00:00",
+  "recent_window_days": 60,
+  "products_monitored": 2000,
+  "status_counts": {
+    "Stable": 2000
+  },
+  "retraining_recommended": 0,
+  "mean_monitoring_score": 0.1665269746426611,
+  "mean_latest_wape": 0.1457741889361322,
+  "mean_performance_change_pct": -0.1606283682272973
+}

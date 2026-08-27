@@ -1,0 +1,5 @@
+dataset,status,checks
+daily_demand,PASS,15
+inventory_daily,INFO,1
+inventory_daily,PASS,38
+products,PASS,18

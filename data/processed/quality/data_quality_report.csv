@@ -1,0 +1,73 @@
+dataset,check,status,value,expected,severity
+products,Required columns,PASS,11,All required columns present,INFO
+products,Row count,PASS,2000,> 0,INFO
+products,Missing values,PASS,0,0,INFO
+products,Duplicate rows by product_id,PASS,0,0,INFO
+products,Numeric type: selling_price,PASS,float64,Numeric,INFO
+products,Numeric type: unit_cost,PASS,float64,Numeric,INFO
+products,Numeric type: base_daily_demand,PASS,float64,Numeric,INFO
+products,Numeric type: gross_profit,PASS,float64,Numeric,INFO
+products,Numeric type: gross_margin_pct,PASS,float64,Numeric,INFO
+products,Negative values: selling_price,PASS,0,0,INFO
+products,Negative values: unit_cost,PASS,0,0,INFO
+products,Negative values: base_daily_demand,PASS,0,0,INFO
+products,Negative values: gross_profit,PASS,0,0,INFO
+products,Product ID uniqueness,PASS,2000,2000,INFO
+products,Gross profit calculation,PASS,0,0 mismatches,INFO
+products,Gross margin calculation,PASS,0,0 mismatches,INFO
+products,Gross margin bounds,PASS,0,0 ≤ margin ≤ 1,INFO
+products,Demand class validity,PASS,0,Known demand classes,INFO
+daily_demand,Required columns,PASS,6,All required columns present,INFO
+daily_demand,Row count,PASS,1460000,> 0,INFO
+daily_demand,Missing values,PASS,0,0,INFO
+daily_demand,"Duplicate rows by product_id, date",PASS,0,0,INFO
+daily_demand,Numeric type: actual_demand,PASS,int64,Numeric,INFO
+daily_demand,Numeric type: expected_demand,PASS,float64,Numeric,INFO
+daily_demand,Numeric type: base_daily_demand,PASS,float64,Numeric,INFO
+daily_demand,Negative values: actual_demand,PASS,0,0,INFO
+daily_demand,Negative values: expected_demand,PASS,0,0,INFO
+daily_demand,Negative values: base_daily_demand,PASS,0,0,INFO
+daily_demand,Product coverage,PASS,2000,2000,INFO
+daily_demand,Master product referential integrity,PASS,0,0 missing products,INFO
+daily_demand,Minimum date,PASS,2025-01-01,,INFO
+daily_demand,Maximum date,PASS,2026-12-31,,INFO
+daily_demand,Product date coverage,PASS,730,Consistent observations per product,INFO
+inventory_daily,Required columns,PASS,11,All required columns present,INFO
+inventory_daily,Row count,PASS,1460000,> 0,INFO
+inventory_daily,Missing values,PASS,0,0,INFO
+inventory_daily,"Duplicate rows by product_id, date",PASS,0,0,INFO
+inventory_daily,Numeric type: actual_demand,PASS,int64,Numeric,INFO
+inventory_daily,Numeric type: opening_inventory,PASS,int64,Numeric,INFO
+inventory_daily,Numeric type: closing_inventory,PASS,int64,Numeric,INFO
+inventory_daily,Numeric type: purchase_order,PASS,int64,Numeric,INFO
+inventory_daily,Numeric type: inventory_position,PASS,int64,Numeric,INFO
+inventory_daily,Numeric type: safety_stock,PASS,int64,Numeric,INFO
+inventory_daily,Numeric type: reorder_point,PASS,int64,Numeric,INFO
+inventory_daily,Numeric type: order_quantity,PASS,int64,Numeric,INFO
+inventory_daily,Numeric type: fill_rate,PASS,float64,Numeric,INFO
+inventory_daily,Numeric type: inventory_utilization,PASS,float64,Numeric,INFO
+inventory_daily,Negative values: actual_demand,PASS,0,0,INFO
+inventory_daily,Negative values: opening_inventory,PASS,0,0,INFO
+inventory_daily,Negative values: closing_inventory,PASS,0,0,INFO
+inventory_daily,Negative values: purchase_order,PASS,0,0,INFO
+inventory_daily,Negative values: inventory_position,PASS,0,0,INFO
+inventory_daily,Negative values: safety_stock,PASS,0,0,INFO
+inventory_daily,Negative values: reorder_point,PASS,0,0,INFO
+inventory_daily,Negative values: order_quantity,PASS,0,0,INFO
+inventory_daily,Product coverage,PASS,2000,2000,INFO
+inventory_daily,Master product referential integrity,PASS,0,0 missing products,INFO
+inventory_daily,Fill rate bounds,PASS,0,0 ≤ fill_rate ≤ 1,INFO
+inventory_daily,Inventory utilization bounds,PASS,0,0 ≤ utilization ≤ 1,INFO
+inventory_daily,Stockout flag validity,PASS,0,Boolean / 0 / 1,INFO
+inventory_daily,Negative values: min_lead_time_days,PASS,0,0,INFO
+inventory_daily,Negative values: max_lead_time_days,PASS,0,0,INFO
+inventory_daily,Negative values: average_lead_time_days,PASS,0,0,INFO
+inventory_daily,Negative values: actual_lead_time,PASS,0,0,INFO
+inventory_daily,Negative values: supplier_delay_days,PASS,0,0,INFO
+inventory_daily,Lead time consistency,PASS,0,min ≤ max,INFO
+inventory_daily,Average lead time bounds,PASS,0,min ≤ average ≤ max,INFO
+inventory_daily,Actual lead time validation,PASS,0,For active lead times: min ≤ actual ≤ max + supplier delay,INFO
+inventory_daily,Inventory balance diagnostic,INFO,0,Review mismatches against purchase arrivals,INFO
+inventory_daily,Minimum date,PASS,2025-01-01,,INFO
+inventory_daily,Maximum date,PASS,2026-12-31,,INFO
+inventory_daily,Product date coverage,PASS,730,Consistent observations per product,INFO

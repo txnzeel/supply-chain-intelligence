@@ -1,0 +1,23 @@
+{
+  "registry_version": 1,
+  "run_id": "forecast-20260827T182401Z",
+  "registered_at_utc": "2026-08-27T18:24:01.451849+00:00",
+  "champion_models": 2000,
+  "model_distribution": {
+    "HoltWinters7": 1335,
+    "SES": 285,
+    "Naive": 156,
+    "SeasonalNaive7": 138,
+    "RollingMean28": 77,
+    "Croston": 6,
+    "SeasonalNaive28": 2,
+    "Holt": 1
+  },
+  "mean_validation_wape": 0.167051465046565,
+  "training_data": "data\\processed\\daily_demand.csv",
+  "training_data_sha256": "ee9337aec15801078ae846c220deae798260be99c1911177cfa255de07f2ac31",
+  "training_code": "python\\forecasting\\demand_forecaster.py",
+  "training_code_sha256": "569c930a5d6404786c64525966c64495b6d0742f44d037db4a1f2dc5c1501efd",
+  "forecast_artifact": "models\\artifacts\\champion_forecasts.parquet",
+  "forecast_artifact_sha256": "90b7082afc2bf855f143a39394b21680803305adba5dd3a2f15c89aa57e52e9b"
+}

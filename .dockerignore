@@ -1,0 +1,13 @@
+.git
+.github
+.venv
+__pycache__
+*.py[cod]
+*.log
+.env
+.pytest_cache
+data/metadata/runs
+data/warehouse
+data/processed
+models/experiments
+models/artifacts

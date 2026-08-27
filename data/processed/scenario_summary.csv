@@ -1,0 +1,5 @@
+scenario,products,total_scenario_cost,total_cost_change,total_cost_savings,total_lost_sales,total_lost_sales_increase,avg_fill_rate,avg_fill_rate_change,avg_inventory_days,avg_inventory_days_change,scenario_status,scenario_priority
+Combined Stress,2000,19737364.2134,2566662.2232,-2566662.2232,1016569.0,283123.0,0.9640949000000001,-0.031,26.1677944,4.3233741,High exposure,P1 - Severe
+Demand Surge,2000,18014928.1725,844226.1849,-844226.1849,924123.0,190677.0,0.9850949000000001,-0.01,20.0240511,-1.8203688999999998,High exposure,P1 - Severe
+Optimized Policy,2000,17170701.99,0.0,0.0,733446.0,0.0,0.9950949,0.0,21.84442,0.0,Service resilient but more expensive,P4 - Resilient
+Supplier Disruption,2000,19070210.895,1899508.9037,-1899508.9037,810487.0,77041.0,0.9740949000000001,-0.021,28.889237700000002,7.0448138,High exposure,P2 - High

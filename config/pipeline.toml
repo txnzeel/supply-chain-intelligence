@@ -1,0 +1,122 @@
+[project]
+name = "supply-chain-intelligence"
+data_root = "data"
+warehouse_path = "data/warehouse/supply_chain.duckdb"
+run_log_dir = "data/metadata/runs"
+
+[pipeline]
+fail_fast = true
+
+[[pipeline.steps]]
+name = "generate_demand"
+script = "python/data_generation/generate_demand.py"
+inputs = ["data/raw/products.csv"]
+outputs = ["data/processed/daily_demand.csv"]
+
+[[pipeline.steps]]
+name = "simulate_inventory"
+script = "python/simulation/inventory_simulation.py"
+inputs = ["data/processed/daily_demand.csv", "data/raw/products.csv"]
+outputs = ["data/processed/inventory_daily.csv"]
+
+[[pipeline.steps]]
+name = "data_quality"
+script = "python/preprocessing/data_quality.py"
+inputs = ["data/raw/products.csv", "data/processed/daily_demand.csv", "data/processed/inventory_daily.csv"]
+outputs = ["data/processed/quality/data_quality_summary.csv"]
+
+[[pipeline.steps]]
+name = "forecast_demand"
+script = "python/forecasting/demand_forecaster.py"
+inputs = ["data/processed/daily_demand.csv"]
+outputs = ["data/processed/forecasts/demand_forecasts.csv", "data/processed/forecasts/forecast_metrics.csv"]
+
+[[pipeline.steps]]
+name = "detect_anomalies"
+script = "python/anomaly_detection/demand_anomaly_detector.py"
+inputs = ["data/processed/daily_demand.csv", "data/processed/forecasts/demand_forecasts.csv"]
+outputs = ["data/processed/anomalies/demand_anomalies.csv"]
+
+[[pipeline.steps]]
+name = "register_models"
+script = "python/modeling/register_models.py"
+inputs = ["data/processed/daily_demand.csv", "data/processed/forecasts/model_selection.csv", "data/processed/forecasts/demand_forecasts.csv"]
+outputs = ["models/registry/champion_models.csv", "models/registry/registry_manifest.json", "models/artifacts/champion_forecasts.parquet"]
+
+[[pipeline.steps]]
+name = "monitor_models"
+script = "python/modeling/monitor_models.py"
+inputs = ["data/processed/daily_demand.csv", "data/processed/forecasts/forecast_metrics.csv", "models/registry/champion_models.csv"]
+outputs = ["data/processed/modeling/model_monitoring.csv", "data/processed/modeling/model_monitoring_summary.json"]
+
+[[pipeline.steps]]
+name = "inventory_risk"
+script = "python/risk/inventory_risk.py"
+inputs = ["data/processed/inventory_daily.csv"]
+outputs = ["data/processed/inventory_risk.csv"]
+
+[[pipeline.steps]]
+name = "optimize_inventory"
+script = "python/optimization/inventory_optimizer.py"
+inputs = ["data/processed/daily_demand.csv", "data/processed/inventory_risk.csv"]
+outputs = ["data/processed/inventory_optimization.csv", "data/processed/optimization_summary.csv"]
+
+[[pipeline.steps]]
+name = "monte_carlo_inventory"
+script = "python/modeling/monte_carlo_inventory.py"
+inputs = ["data/processed/forecasts/forecast_summary.csv", "data/processed/inventory_optimization.csv", "models/registry/champion_models.csv"]
+outputs = ["data/processed/modeling/monte_carlo_inventory_risk.csv", "data/processed/modeling/monte_carlo_summary.json"]
+
+[[pipeline.steps]]
+name = "optimization_decisions"
+script = "python/optimization/optimization_decision_analysis.py"
+inputs = ["data/processed/inventory_optimization.csv"]
+outputs = ["data/processed/optimization_decisions.csv"]
+
+[[pipeline.steps]]
+name = "scenario_simulation"
+script = "python/optimization/inventory_scenario.py"
+inputs = ["data/processed/daily_demand.csv"]
+outputs = ["data/processed/scenario_results.csv", "data/processed/scenario_summary.csv"]
+
+[[pipeline.steps]]
+name = "scenario_analysis"
+script = "python/optimization/scenario_analysis.py"
+inputs = ["data/processed/scenario_results.csv"]
+outputs = ["data/processed/scenario_analysis.csv", "data/processed/scenario_opportunities.csv"]
+
+[[pipeline.steps]]
+name = "scenario_decisions"
+script = "python/optimization/scenario_decision_engine.py"
+inputs = ["data/processed/scenario_analysis.csv"]
+outputs = ["data/processed/scenario_decisions.csv", "data/processed/scenario_decision_summary.csv"]
+
+[[pipeline.steps]]
+name = "economic_validation"
+script = "python/optimization/economic_validation.py"
+inputs = ["data/processed/optimization_decisions.csv"]
+outputs = ["data/processed/economic_validation.csv"]
+
+[[pipeline.steps]]
+name = "contingency_planning"
+script = "python/optimization/contingency_planning.py"
+inputs = ["data/processed/scenario_decisions.csv", "data/processed/inventory_optimization.csv"]
+outputs = ["data/processed/contingency_plans.csv", "data/processed/contingency_summary.csv"]
+
+[[pipeline.steps]]
+name = "executive_actions"
+script = "python/optimization/executive_action_plan.py"
+inputs = ["data/processed/inventory_optimization.csv", "data/processed/economic_validation.csv", "data/processed/contingency_plans.csv"]
+outputs = ["data/processed/executive_action_plan.csv", "data/processed/executive_priorities.csv"]
+
+[[pipeline.steps]]
+name = "supply_chain_risk"
+script = "python/risk/supply_chain_risk_engine.py"
+inputs = ["data/raw/products.csv", "data/processed/inventory_risk.csv", "data/processed/inventory_optimization.csv"]
+outputs = ["data/processed/risk/supply_chain_risk.csv", "data/processed/risk/risk_executive_summary.csv"]
+
+[[pipeline.steps]]
+name = "build_warehouse"
+script = "python/data_engineering/build_warehouse.py"
+inputs = ["data/raw/products.csv", "data/processed/daily_demand.csv"]
+outputs = ["data/warehouse/supply_chain.duckdb"]

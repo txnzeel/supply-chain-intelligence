@@ -1,0 +1,17 @@
+metric,value
+Products monitored,2000.0
+Critical risk products,1.0
+High risk products,20.0
+Moderate risk products,82.0
+Low risk products,1897.0
+P1 immediate actions,1.0
+P2 high priority actions,60.0
+P3 monitoring actions,42.0
+Products with demand anomalies,95.0
+Products with compound risk,103.0
+Average risk score,8.0
+Average risk confidence,84.97
+Estimated financial exposure,3852780830.85
+Risk-weighted at-risk value,124575270.22
+Estimated lost-sales exposure,2809846655.71
+Optimization opportunity,4233721.34
