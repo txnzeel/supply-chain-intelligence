@@ -251,7 +251,7 @@ python python\data_engineering\run_pipeline.py --from economic_validation --forc
 ### 3. Launch the control tower
 
 ```powershell
-streamlit run dashboard\app.py
+streamlit run dashboard\Dashboard.py
 ```
 
 Open `http://localhost:8501`.
@@ -280,7 +280,7 @@ project. Deployment details are available in
 ├── assets/images/              # Dashboard screenshots
 ├── config/pipeline.toml        # Pipeline dependency graph
 ├── dashboard/
-│   ├── app.py                  # Five-layer control tower
+│   ├── Dashboard.py            # Five-layer control tower
 │   └── pages/                  # Model Operations Center
 ├── data/
 │   ├── raw/                    # Source product data
