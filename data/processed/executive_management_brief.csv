@@ -1,12 +1,12 @@
 metric,value
 Products analyzed,2000.0
 P1 immediate actions,3.0
-P2 high-priority actions,227.0
+P2 high-priority actions,250.0
 Critical contingency exposures,3.0
-High contingency exposures,163.0
-Additional safety stock required,263068.0
-Potential lost-sales exposure,283123.0
-Total contingency cost exposure,2566662.34
-Supplier-focused actions,61.0
-Demand-focused actions,105.0
-Inventory-focused actions,1825.0
+High contingency exposures,176.0
+Additional safety stock required,263687.0
+Potential lost-sales exposure,285878.0
+Total contingency cost exposure,2589151.37
+Supplier-focused actions,70.0
+Demand-focused actions,109.0
+Inventory-focused actions,1819.0

@@ -4,7 +4,7 @@
 
 ```powershell
 .venv\Scripts\Activate.ps1
-streamlit run dashboard\app.py
+streamlit run dashboard\Dashboard.py
 ```
 
 The original `dashboard/executive_inventory_dashboard.py` remains available as

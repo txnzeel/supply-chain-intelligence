@@ -1119,12 +1119,12 @@ def generate_rationale(row):
     if cost >= 0:
         cost_text = (
             f"modeled cost increases by "
-            f"${cost:,.0f}"
+            f"₹{cost:,.0f}"
         )
     else:
         cost_text = (
             f"modeled cost decreases by "
-            f"${abs(cost):,.0f}"
+            f"₹{abs(cost):,.0f}"
         )
 
     return (

@@ -1263,7 +1263,7 @@ for _, row in summary.iterrows():
 
     print(
         f"{row['scenario']:<25}"
-        f"Cost: ${row['total_scenario_cost']:>14,.2f}   "
+        f"Cost: ₹{row['total_scenario_cost']:>14,.2f}   "
         f"Lost sales: {row['total_lost_sales']:>10,.0f}   "
         f"Fill rate: {row['avg_fill_rate']:.2%}   "
         f"Status: {row['scenario_status']}"

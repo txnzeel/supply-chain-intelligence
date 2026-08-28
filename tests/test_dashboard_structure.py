@@ -6,7 +6,9 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 
 def dashboard_layers() -> dict[str, list[str]]:
-    tree = ast.parse((PROJECT_ROOT / "dashboard" / "app.py").read_text(encoding="utf-8"))
+    tree = ast.parse(
+        (PROJECT_ROOT / "dashboard" / "Dashboard.py").read_text(encoding="utf-8")
+    )
     for node in tree.body:
         if isinstance(node, ast.Assign):
             if any(isinstance(target, ast.Name) and target.id == "LAYERS" for target in node.targets):

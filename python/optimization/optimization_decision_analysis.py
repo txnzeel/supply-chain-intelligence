@@ -759,7 +759,7 @@ def generate_rationale(row):
             f"{action}. The optimization is expected to "
             f"reduce lost sales by {lost_sales:,.0f} units "
             f"while reducing modeled cost by "
-            f"${cost:,.0f}. "
+            f"₹{cost:,.0f}. "
             f"Fill rate changes by {fill_change:+.2%}."
         )
 
@@ -770,7 +770,7 @@ def generate_rationale(row):
             f"service, with expected lost-sales reduction "
             f"of {lost_sales:,.0f} units. "
             f"Modeled cost impact is "
-            f"${cost:,.0f}."
+            f"₹{cost:,.0f}."
         )
 
     if inventory_change < 0:

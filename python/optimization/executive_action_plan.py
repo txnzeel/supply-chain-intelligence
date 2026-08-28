@@ -942,7 +942,7 @@ def generate_executive_rationale(row):
             f"Optimization analysis recommends "
             f"{row['management_decision'].lower()}. "
             f"Modeled cost impact is "
-            f"${row['cost_savings']:,.2f}, with lost-sales "
+            f"₹{row['cost_savings']:,.2f}, with lost-sales "
             f"change of "
             f"{row['lost_sales_reduction']:,.0f} units."
         )
@@ -1604,7 +1604,7 @@ print(
 
 print(
     f"Contingency cost exposure:      "
-    f"${total_cost_exposure:,.2f}"
+    f"₹{total_cost_exposure:,.2f}"
 )
 
 

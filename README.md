@@ -12,9 +12,11 @@
 
 **Data Engineering · Forecasting · Decision Science · MLOps · Business Intelligence**
 
+**Designed and developed by [Tanzeel Aftab](https://github.com/txnzeel)**
+
 </div>
 
-![Supply Chain Executive Control Tower](assets/images/control-tower-overview.png)
+![Supply Chain Executive Action Center](assets/images/executive-summary-actions.png)
 
 ---
 
@@ -48,9 +50,9 @@ It is designed around four questions:
 | Forecast horizon | **30 days per product** |
 | Registered champion models | **2,000** |
 | Mean validation WAPE | **16.7%** |
-| Baseline portfolio cost | **$18.37M** |
-| Optimized portfolio cost | **$17.17M** |
-| Modeled cost savings | **$1.20M** |
+| Baseline portfolio cost | **₹1.84 Cr** |
+| Optimized portfolio cost | **₹1.72 Cr** |
+| Modeled cost savings | **₹11.98 L** |
 | Fill rate | **99.3% → 99.5%** |
 | Monte Carlo scenarios | **10,000,000** |
 | Critical inventory exposures | **26** |
@@ -60,7 +62,8 @@ optimization: **1,604 policies were classified as fragile** when forecast error
 and lead-time uncertainty were simulated together. That finding turns the
 project from an optimization demo into a genuine decision-risk system.
 
-> All data is synthetic and all financial values are modeled estimates. Results
+> All data is synthetic and all financial values are modeled estimates in
+> **Indian rupees (INR)**. Results
 > demonstrate analytical methodology rather than real operational performance.
 
 ---
@@ -79,12 +82,11 @@ competing on one oversized page.
 | Risk & Scenario Intelligence | What could undermine the plan? |
 | Portfolio Exploration | Where should an analyst investigate? |
 
-### Performance and management decisions
+### Management decisions
 
 <table>
   <tr>
-    <td width="50%"><img src="assets/images/performance-economics.png" alt="Performance and economics dashboard"></td>
-    <td width="50%"><img src="assets/images/management-decisions.png" alt="Management decisions dashboard"></td>
+    <td><img src="assets/images/management-decisions.png" alt="Management decisions dashboard"></td>
   </tr>
 </table>
 
@@ -333,5 +335,7 @@ project. Deployment details are available in
 <div align="center">
 
 ### Built to connect engineering, prediction, and action—not just display another dashboard.
+
+Developed by **[Tanzeel Aftab](https://github.com/txnzeel)**
 
 </div>

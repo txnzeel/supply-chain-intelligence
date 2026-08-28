@@ -604,7 +604,7 @@ print(
 
 print(
     f"Modeled cost savings:           "
-    f"${total_cost_savings:,.2f}"
+    f"₹{total_cost_savings:,.2f}"
 )
 
 print(

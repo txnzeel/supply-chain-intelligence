@@ -228,15 +228,16 @@ def number(frame: pd.DataFrame, column: str, operation: str = "sum") -> float:
 
 
 def money(value: float) -> str:
+    """Format modeled financial values in Indian rupees."""
     sign = "-" if value < 0 else ""
     value = abs(value)
-    if value >= 1_000_000_000:
-        return f"{sign}${value / 1_000_000_000:.2f}B"
-    if value >= 1_000_000:
-        return f"{sign}${value / 1_000_000:.2f}M"
+    if value >= 10_000_000:
+        return f"{sign}₹{value / 10_000_000:.2f} Cr"
+    if value >= 100_000:
+        return f"{sign}₹{value / 100_000:.2f} L"
     if value >= 1_000:
-        return f"{sign}${value / 1_000:.1f}K"
-    return f"{sign}${value:,.0f}"
+        return f"{sign}₹{value / 1_000:.1f}K"
+    return f"{sign}₹{value:,.0f}"
 
 
 def pct(value: float) -> str:
@@ -343,6 +344,7 @@ registry = data["registry"]
 
 with st.sidebar:
     st.markdown("### ◈ Decision Intelligence")
+    st.caption("Designed & developed by Tanzeel Aftab")
     st.caption("Supply-chain control tower")
     active_layer = st.radio("Decision layer", list(LAYERS), label_visibility="collapsed")
     st.divider()
@@ -666,4 +668,7 @@ renderers = {
 renderers[active_layer]()
 
 st.divider()
-st.caption("Supply Chain Decision Intelligence Platform · Decision outputs are modeled estimates based on synthetic data.")
+st.caption(
+    "Supply Chain Decision Intelligence Platform · Developed by Tanzeel Aftab · "
+    "Financial values are modeled in INR using synthetic data."
+)

@@ -1027,7 +1027,7 @@ def safe_mean(series):
 
 
 def money(value):
-    return f"${value:,.0f}"
+    return f"₹{value:,.0f}"
 
 
 def danger_metric(label, value, **kwargs):
@@ -1210,7 +1210,7 @@ def hbar(
     else:
         color = alt.value(BLUE)
 
-    tip_fmt = "$,.0f" if money_fmt else (".2%" if pct_fmt else ",.0f")
+    tip_fmt = ",.0f" if money_fmt else (".2%" if pct_fmt else ",.0f")
     tooltip = [
         alt.Tooltip(f"{cat}:N", title=cat_title or cat.replace("_", " ").title()),
         alt.Tooltip(f"{val}:Q", title=val_title or "Value", format=tip_fmt),
@@ -1331,7 +1331,7 @@ def vbar(
     else:
         color = alt.value(BLUE)
 
-    tip_fmt = "$,.0f" if money_fmt else (".2%" if pct_fmt else ",.0f")
+    tip_fmt = ",.0f" if money_fmt else (".2%" if pct_fmt else ",.0f")
     tooltip = [
         alt.Tooltip(f"{cat}:N", title=cat_title or cat.replace("_", " ").title()),
         alt.Tooltip(f"{val}:Q", title=val_title or "Value", format=tip_fmt),
@@ -1362,11 +1362,13 @@ def vbar(
 def _label_expr(val, money_fmt, pct_fmt):
     if money_fmt:
         return (
-            f"abs(datum['{val}']) >= 1000000 "
-            f"? (datum['{val}'] < 0 ? '-$' : '$') + format(abs(datum['{val}'])/1000000, '.1f') + 'M' "
+            f"abs(datum['{val}']) >= 10000000 "
+            f"? (datum['{val}'] < 0 ? '-₹' : '₹') + format(abs(datum['{val}'])/10000000, '.1f') + ' Cr' "
+            f": (abs(datum['{val}']) >= 100000 "
+            f"? (datum['{val}'] < 0 ? '-₹' : '₹') + format(abs(datum['{val}'])/100000, '.1f') + ' L' "
             f": (abs(datum['{val}']) >= 1000 "
-            f"? (datum['{val}'] < 0 ? '-$' : '$') + format(abs(datum['{val}'])/1000, '.0f') + 'K' "
-            f": (datum['{val}'] < 0 ? '-$' : '$') + format(abs(datum['{val}']), ',.0f'))"
+            f"? (datum['{val}'] < 0 ? '-₹' : '₹') + format(abs(datum['{val}'])/1000, '.0f') + 'K' "
+            f": (datum['{val}'] < 0 ? '-₹' : '₹') + format(abs(datum['{val}']), ',.0f')))"
         )
     if pct_fmt:
         return f"format(datum['{val}'], '.1%')"
@@ -1425,7 +1427,7 @@ def grouped_bar(
     df = df.copy()
     df[val] = pd.to_numeric(df[val], errors="coerce").fillna(0)
 
-    tip_fmt = "$,.0f" if money_fmt else (".2%" if pct_fmt else ",.0f")
+    tip_fmt = ",.0f" if money_fmt else (".2%" if pct_fmt else ",.0f")
     chart = alt.Chart(df).mark_bar(cornerRadiusEnd=3).encode(
         x=alt.X(f"{series_col}:N", title=None, axis=alt.Axis(labels=False, ticks=False)),
         y=alt.Y(f"{val}:Q", title=val_title or None, axis=alt.Axis(grid=True)),
@@ -1790,13 +1792,16 @@ def _compact_money(value):
     sign = "-" if value < 0 else ""
     value = abs(value)
 
-    if value >= 1_000_000:
-        return f"{sign}${value / 1_000_000:.1f}M"
+    if value >= 10_000_000:
+        return f"{sign}₹{value / 10_000_000:.1f} Cr"
+
+    if value >= 100_000:
+        return f"{sign}₹{value / 100_000:.1f} L"
 
     if value >= 1_000:
-        return f"{sign}${value / 1_000:.0f}K"
+        return f"{sign}₹{value / 1_000:.0f}K"
 
-    return f"{sign}${value:,.0f}"
+    return f"{sign}₹{value:,.0f}"
 
 
 hero_exposure = _brief_value("Total contingency cost exposure")
@@ -1884,6 +1889,7 @@ st.sidebar.markdown(
     """,
     unsafe_allow_html=True,
 )
+st.sidebar.caption("Designed & developed by Tanzeel Aftab")
 
 st.sidebar.divider()
 
@@ -3114,7 +3120,7 @@ st.markdown(
     )
     .style.format({
         "lost_sales_reduction": "{:,.0f}",
-        "cost_savings": "${:,.2f}",
+        "cost_savings": "₹{:,.2f}",
         "avg_fill_rate_change": "{:+.2%}",
         "avg_inventory_days_change": "{:+.2f}",
     })
@@ -3198,7 +3204,7 @@ if "category" in filtered.columns:
             ascending=False
         )
         .style.format({
-            "cost_savings": "${:,.2f}",
+            "cost_savings": "₹{:,.2f}",
             "lost_sales_reduction": "{:,.0f}",
             "avg_fill_rate_change": "{:+.2%}",
             "avg_inventory_days_change": "{:+.2f}",
@@ -3390,7 +3396,7 @@ if "decision_impact_score" in filtered.columns:
     st.markdown(
         display_impact.style.format({
             "decision_impact_score": "{:,.2f}",
-            "cost_savings": "${:,.2f}",
+            "cost_savings": "₹{:,.2f}",
             "lost_sales_reduction": "{:,.0f}",
         }).to_html(
             escape=False,
@@ -3507,7 +3513,7 @@ if "optimized_supplier_delay_rate" in filtered.columns:
             "optimized_supplier_delay_rate": "{:.2%}",
             "optimized_average_supplier_delay": "{:.2f}",
             "lost_sales_reduction": "{:,.0f}",
-            "cost_savings": "${:,.2f}",
+            "cost_savings": "₹{:,.2f}",
         }),
         use_container_width=True,
         hide_index=True,
@@ -3627,7 +3633,7 @@ st.markdown(
     ].style.format({
         "decision_impact_score": "{:,.2f}",
         "lost_sales_reduction": "{:,.0f}",
-        "cost_savings": "${:,.2f}",
+        "cost_savings": "₹{:,.2f}",
         "fill_rate_change": "{:+.2%}",
         "inventory_days_change": "{:+.2f}",
     }).to_html(
@@ -3740,7 +3746,7 @@ if len(critical_products) > 0:
             "baseline_lost_sales": "{:,.0f}",
             "optimized_lost_sales": "{:,.0f}",
             "lost_sales_reduction": "{:,.0f}",
-            "cost_savings": "${:,.2f}",
+            "cost_savings": "₹{:,.2f}",
             "fill_rate_change": "{:+.2%}",
             "inventory_days_change": "{:+.2f}",
         }),
@@ -4187,14 +4193,14 @@ if cost_savings > 0:
 
     takeaway_2 = (
         f"💰 Cost savings: "
-        f"**${cost_savings:,.0f}**"
+        f"**₹{cost_savings:,.0f}**"
     )
 
 elif cost_savings < 0:
 
     takeaway_2 = (
         f"⚠️ Cost increase: "
-        f"**${abs(cost_savings):,.0f}**"
+        f"**₹{abs(cost_savings):,.0f}**"
     )
 
 else:

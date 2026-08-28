@@ -1,7 +1,7 @@
 {
   "registry_version": 1,
-  "run_id": "forecast-20260827T182401Z",
-  "registered_at_utc": "2026-08-27T18:24:01.451849+00:00",
+  "run_id": "forecast-20260828T105647Z",
+  "registered_at_utc": "2026-08-28T10:56:47.623739+00:00",
   "champion_models": 2000,
   "model_distribution": {
     "HoltWinters7": 1335,
